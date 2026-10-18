@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+Suppliers
+{% endblock %}
+{% block content %}
+<p class="eyebrow">Supply network</p>
+<h1>Suppliers</h1>
+<div class="grid-two">
+<section class="panel">
+<h2>Your suppliers</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Suppliers"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+{% for supplier in suppliers %}
+<tr>
+<td>{{ supplier.name }}</td>
+<td>{{ supplier.email or '—' }}</td>
+</tr>
+{% else %}
+<tr>
+<td colspan="2">No suppliers yet.</td>
+</tr>
+{% endfor %}
+</tbody>
+</table></div>
+</section>
+<section class="panel">
+<h2>Add supplier</h2>
+<form method="post">{{ form.hidden_tag() }}
+{% for field in [form.name,form.email] %}
+<div class="field">{{ field.label }}{{ field() }}
+{% for error in field.errors %}
+<span class="field-error">{{ error }}</span>
+{% endfor %}
+</div>
+{% endfor %}
+{{ form.submit(class_='button') }}</form>
+</section>
+</div>
+{% endblock %}

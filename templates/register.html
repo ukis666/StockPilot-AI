@@ -1,0 +1,5 @@
+{% extends 'form.html' %}
+{% set title = 'Create account' %}
+{% block form_footer %}
+<p class="muted">Already registered? <a href="{{ url_for('auth.login') }}">Login</a>.</p>
+{% endblock %}

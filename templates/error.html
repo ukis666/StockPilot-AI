@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ code }}
+{% endblock %}
+{% block content %}
+<section class="panel form-panel">
+<p class="eyebrow">StockPilot AI</p>
+<h1>{{ code }}</h1>
+<p>{{ message }}</p>
+<a class="button" href="{{ url_for('main.index') }}">Return to inventory</a>
+</section>
+{% endblock %}

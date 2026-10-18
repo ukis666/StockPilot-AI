@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}
+Inventory
+{% endblock %}
+{% block content %}
+<div class="page-title">
+<div>
+<p class="eyebrow">Inventory workspace</p>
+<h1>Products</h1>
+<p class="muted">Manage stock with a complete movement history.</p>
+</div>
+<a class="button" href="{{ url_for('main.product_form') }}">+ Add product</a>
+</div>
+<div class="toolbar">
+<form method="get">
+<label class="sr-only" for="q">Search products</label>
+<input id="q" name="q" value="{{ q }}" placeholder="Search products">
+<button>Search</button>
+</form>
+<a href="{{ url_for('main.import_csv') }}">Import CSV</a>
+<a href="{{ url_for('main.export_csv') }}">Export CSV</a>
+</div>
+<section class="panel table-wrap" tabindex="0" role="region" aria-label="Product inventory">
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Category</th>
+<th>Supplier</th>
+<th class="numeric">Stock</th>
+<th class="numeric">Unit price</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{% for item in items %}
+<tr>
+<td>
+<a href="{{ url_for('main.view', item_id=item.id) }}">{{ item.name }}</a>
+</td>
+<td>{{ item.category or '—' }}</td>
+<td>{{ item.supplier.name if item.supplier else '—' }}</td>
+<td class="numeric">{{ item.quantity }}</td>
+<td class="numeric">{{ '%.2f'|format(item.price) }}</td>
+<td class="actions">
+<a href="{{ url_for('main.product_form', item_id=item.id) }}">Edit</a>
+<form method="post" action="{{ url_for('main.delete', item_id=item.id) }}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<button class="danger quiet">Archive</button>
+</form>
+</td>
+</tr>
+{% else %}
+<tr>
+<td colspan="6" class="empty">No products found. Add your first product or import a CSV.</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</section>
+<div class="pagination">
+{% if items.has_prev %}
+<a href="{{ url_for('main.index', page=items.prev_num, q=q) }}">← Previous</a>
+{% endif %}
+<span>{{ items.total }} products · Page {{ items.page }} of {{ items.pages or 1 }}</span>
+{% if items.has_next %}
+<a href="{{ url_for('main.index', page=items.next_num, q=q) }}">Next →</a>
+{% endif %}
+</div>
+{% endblock %}

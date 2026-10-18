@@ -1,0 +1,30 @@
+<div class="table-wrap" tabindex="0" role="region" aria-label="Inventory movements">
+<table>
+<thead>
+<tr>
+<th>Date (UTC)</th>
+<th>Product</th>
+<th>Type</th>
+<th class="numeric">Change</th>
+<th class="numeric">Balance after</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+{% for movement in movements %}
+<tr>
+<td>{{ movement.occurred_at.strftime('%Y-%m-%d %H:%M') }}</td>
+<td><a href="{{ url_for('main.view', item_id=movement.item_id) }}">{{ movement.item.name }}</a></td>
+<td>{{ movement.kind }}</td>
+<td class="numeric">{{ '%+d'|format(movement.delta) }}</td>
+<td class="numeric">{{ movement.balance_after }}</td>
+<td>{{ movement.note or '—' }}</td>
+</tr>
+{% else %}
+<tr>
+<td colspan="6" class="empty">No stock movements for this selection.</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>

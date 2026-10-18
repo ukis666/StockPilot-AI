@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ item.name }}
+{% endblock %}
+{% block content %}
+<div class="page-title">
+<div>
+<p class="eyebrow">Inventory / Product</p>
+<h1>{{ item.name }}</h1>
+<p class="muted">{{ item.description or 'No description' }}</p>
+</div>
+<a class="button" href="{{ url_for('main.product_form', item_id=item.id) }}">Edit product</a>
+</div>
+<div class="grid-two">
+<section class="panel">
+<h2>Stock overview</h2>
+<div class="big-number">{{ item.quantity }} <small>units</small>
+</div>
+<p>Unit price: {{ '%.2f'|format(item.price) }}</p>
+<p>Supplier: {{ item.supplier.name if item.supplier else 'Unassigned' }}</p>
+<p>Category: {{ item.category or 'General' }}</p>
+{% if item.image_filename %}
+<img class="product-image" src="{{ url_for('main.uploaded_image', filename=item.image_filename) }}" alt="{{ item.name }}">
+{% endif %}
+</section>
+<section class="panel">
+<h2>Record stock movement</h2>
+<form method="post" action="{{ url_for('main.movement', item_id=item.id) }}">{{ form.hidden_tag() }}
+{% for field in [form.kind,form.quantity,form.note] %}
+<div class="field">{{ field.label }}{{ field() }}</div>
+{% endfor %}
+{{ form.submit(class_='button') }}</form>
+</section>
+</div>
+<section class="panel">
+<h2>Movement history</h2>
+<p class="muted">Latest 100 entries. Archived products retain all records.</p>
+{% include '_movements.html' %}
+</section>
+{% endblock %}

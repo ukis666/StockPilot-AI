@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+Import CSV
+{% endblock %}
+{% block content %}
+<section class="panel form-panel">
+<h1>Import products</h1>
+<p class="muted">UTF-8 CSV with columns: name, description, quantity, price, category. Only name is required. Up to 1000 rows; the whole import is cancelled if any row is invalid.</p>
+<form method="post" enctype="multipart/form-data">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label for="file">CSV file</label>
+<input id="file" type="file" name="file" accept=".csv,text/csv" required>
+<button>Import CSV</button>
+</form>
+</section>
+{% endblock %}

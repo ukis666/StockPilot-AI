@@ -1,0 +1,12 @@
+{
+  "owner_id": 2,
+  "cutoff": "2026-06-30",
+  "products_trained": 30,
+  "forecast_mae": 2.2707621469191377,
+  "baseline_mae": 6.19187675070028,
+  "anomaly_training_movements": 5615,
+  "anomaly_alerts": 139,
+  "controlled_anomalies": 10,
+  "controlled_anomalies_detected": 10,
+  "evaluation": "Mean per-product MAE, chronological final 20%, rolling one-step predictions"
+}

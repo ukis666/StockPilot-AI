@@ -1,0 +1,37 @@
+name: StockPilot quality
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - name: Static analysis
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: Unit and integration tests with coverage
+        run: pytest --cov --cov-report=term-missing --cov-report=xml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage.xml
+      - name: Verify Compose configuration
+        run: docker compose config --quiet
+      - name: Build Ubuntu CPU image
+        run: docker compose build app
+      - name: Verify initialized application startup
+        run: |
+          docker compose run --rm app flask --app app init-db
+          docker compose up -d --wait app
+          curl --fail http://127.0.0.1:5000/health
+          curl --fail http://127.0.0.1:5000/auth/login
+      - name: Stop services
+        if: always()
+        run: docker compose down

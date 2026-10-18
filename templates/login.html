@@ -1,0 +1,5 @@
+{% extends 'form.html' %}
+{% set title = 'Login' %}
+{% block form_footer %}
+<p class="muted">New to StockPilot AI? <a href="{{ url_for('auth.register') }}">Create an account</a>.</p>
+{% endblock %}
