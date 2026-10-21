@@ -10,7 +10,7 @@ Reference implementation commit: 50984580836c4131ebeed5c7182149e0101c2da1
 
 StockPilot AI helps small businesses record inventory, trace stock movements, and inspect consumption forecasts and unusual movements. The coursework will assess and document an existing implementation against explicit requirements, quality criteria, and review evidence. No new product features are planned.
 
-The reference implementation already exists. This document establishes the coursework plan; it does not claim that implementation occurred after this plan, that planned reviews have already taken place, or that the responsibility allocation below proves historical code authorship. Phase branches organize deliverables and subsequent verification work rather than reconstructing a development history.
+This branch contains planning documents only, with no application implementation, runtime dependencies, tests or deployment files. The reference implementation already exists on main. This document establishes the coursework plan; it does not claim that implementation occurred after this plan, that planned reviews have already taken place, or that the responsibility allocation below proves historical code authorship. Phase branches organize deliverables and subsequent verification work rather than reconstructing a development history.
 
 ## 2 Problem and intended users
 
@@ -43,7 +43,7 @@ The initial Phase 1 team contains four members.
 
 Every member documents and tests their assigned area, participates in issue triage, and reviews another area. Emirhan coordinates integration; coordination does not replace the other members' responsibility for their own deliverables.
 
-İbrahim Halil Kanat joined at the end of Phase 2 and is not part of the initial Phase 1 allocation. The Phase 2 closing update will record his onboarding and the five-person allocation. His subsequent responsibility will cover test coordination, Docker/CI verification, and evidence packaging, including the CSV import verification scenario. Existing members retain their component testing duties. This statement records the reported membership sequence, not a completed onboarding activity.
+Phase 1 and Phase 2 use the same four-person allocation. Membership changes will be documented in the Phase 3 team update, without retroactively assigning earlier work.
 
 ## 5 Functional requirements
 
@@ -173,11 +173,13 @@ Postconditions: A valid product appears in the user's active inventory; its init
 | Collaboration | GitHub issues, branches and pull requests | Traceable assignment, review and verification records |
 | Work management | Kanban | Small tasks and continuous review fit documentation and verification of an existing product |
 
-## 9 Environment setup and verification plan
+## 9 Planned implementation environment
 
 Use Ubuntu 24.04 with Python 3.12, or the supplied Docker environment. Native Windows compatibility is not assumed: the application imports the Unix-specific fcntl module. Windows users should use WSL2 or the Linux container.
 
-Local setup from the repository root:
+The commands below are reference instructions for a later implementation-bearing branch, not commands runnable from this documentation-only Phase 1 snapshot. Phase 1 environment preparation consists of selecting the OS/runtime/tools and recording member setup status; application execution is not a Phase 1 deliverable.
+
+Local setup on a later implementation-bearing branch:
 
 ```bash
 python3 -m venv .venv
@@ -212,7 +214,7 @@ The reference main branch is preserved. Coursework changes are made only on expl
 
 Kanban columns: Backlog, Ready, In Progress, In Review, Done. Each task records an owner, linked requirement or deliverable, acceptance criteria, reviewer and evidence.
 
-The Phase 1 document is maintained on coursework/phase-1. Phase 2 and Phase 3 will be prepared separately after reviewing their predecessor. Branches currently inherit the complete reference implementation; a phase name does not mean later implementation features have been removed.
+The Phase 1 document is maintained on coursework/phase-1. Phase 2 will start from the Phase 1 snapshot and add only requirements refinements, quality gates, test planning and security risk assessment. Phase 3 will start from Phase 2 and introduce architecture/design evidence and selected implementation increments from the reference main branch, each with review and applicable checks. No complete application is included in Phase 1 or Phase 2. Main remains a reference, not the starting file tree for future phase branches.
 
 A task is Done when its acceptance criteria are met, its assigned reviewer has inspected it, applicable checks are recorded, and related documents are updated. Documentation-only changes require content and consistency review; code changes require relevant tests. Record actual contributors and AI assistance without backdating work or assigning fictional authorship.
 
@@ -223,8 +225,8 @@ Official calendar deadlines will be taken from the course syllabus when availabl
 | Window | Milestone | Outputs |
 |---|---|---|
 | First 2–3 week interval | Phase 1 | Initial four-person team, scope, requirements, use cases, environment and workflow plan |
-| Following 2–3 week interval | Phase 2 | Refined requirements, quality gates, test plan and security risks; five-person team update at closing |
-| Following 2–3 week interval | Phase 3 | Architecture and alternatives, technical decisions, module mapping, real code reviews and justified corrections |
+| Following 2–3 week interval | Phase 2 | Four-person requirements refinement, quality gates, test plan and security risks; no application implementation |
+| Following 2–3 week interval | Phase 3 | Updated team allocation, architecture and alternatives, technical decisions, selected implementation increments, real code reviews and justified corrections |
 | Following 2–3 week interval | Phase 4 | Systematic tests, defect resolution, module complexity analysis and deployment evidence |
 | Course final submission window | Phase 5 | Consolidated report of at most 20 pages including references, repository/run/test instructions, demo and individual lessons |
 
@@ -243,7 +245,7 @@ Other open items are official deadlines, actual completion evidence for each mem
 Task: Phase 1 planning and documentation.  
 Tool: OpenAI ChatGPT with GitHub integration.  
 Use: Read repository documentation and selected source/test files; draft requirements, use cases, responsibility allocation, environment guidance and relative milestones using team information supplied by Emirhan Keven.  
-Human input: Team names, initial four-person membership, İbrahim's arrival at the end of Phase 2, English-language output, fixed feature scope and branch-only changes.  
+Human input: Team names, initial four-person membership, four-person scope for Phase 1 and Phase 2, with subsequent onboarding recorded in Phase 3, English-language output, fixed feature scope and branch-only changes.  
 Review status: Prepared for team review; no claim that all four members have approved it or performed the assigned work. No application tests were executed for this documentation-only task.
 
 This factual record is not labeled a completed DIR statement: the class-specific DIR structure and scoring instructions were not supplied. The team must map this record and other actual AI uses to that format before submission. This entry does not cover or reconstruct earlier AI-assisted implementation.
