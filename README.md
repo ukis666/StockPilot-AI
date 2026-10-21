@@ -1,25 +1,15 @@
-# StockPilot AI Phase 1
+# StockPilot AI Phase 2
 
-Course: Software Quality Standards  
-Stage: Team Formation and Environment Setup  
+Software Quality Standards  
 Team: Emirhan Keven, Ulaş Şahin, Volkan Yılmaz, Berat Kahraman
 
-This branch is a documentation-only coursework snapshot. No runnable application is included.
+This branch contains planning documents only. The complete reference application remains on main; it is not included in the current Phase 2 file tree.
 
-Read [the Phase 1 deliverable](docs/coursework/phase-1.md) for scope, responsibilities, functional and quality requirements, four use cases, selected tools, environment planning and relative milestones.
+- [Phase 1 baseline](docs/coursework/phase-1.md)
+- [Phase 2 quality and security plan](docs/coursework/phase-2.md)
 
-## Staged delivery
+Phase 2 defines requirement refinements, acceptance gates, a test strategy, 14 acceptance scenario groups, FR/QR traceability and a security risk register. Application-integrated CPU forecasting and anomaly models remain in scope; the optional commentary LLM is distinct.
 
-| Phase | Branch contents |
-|---|---|
-| 1 | Team, scope, requirements, use cases, tool/environment selection and schedule |
-| 2 | Phase 1 refinements, quality gates, test plan and security risks; same four-person team |
-| 3 | Team update, architecture and design decisions, reviewed implementation increments selected from main |
-| 4 | Systematic test execution, defect resolution, complexity analysis and deployment evidence |
-| 5 | Final report, demonstration and individual evaluation |
+No test execution or application startup is claimed for this snapshot. Phase 3 will introduce reviewed implementation increments and record the team update. Main is not modified.
 
-The complete implementation on main is an existing reference. Coursework snapshots document staged packaging and subsequent review work; they do not establish a new historical development timeline.
-
-Main is preserved. This branch has no application startup command. Reference application instructions inside the phase document are explicitly for later implementation-bearing branches.
-
-The branch history retains its original ancestry, including the complete reference implementation. The current file tree is reduced to Phase 1 documents without rewriting history.
+The Git ancestry retains the existing reference history. These snapshots organize staged coursework delivery and subsequent review; they do not fabricate a historical development timeline.
